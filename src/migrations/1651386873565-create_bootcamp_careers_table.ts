@@ -1,7 +1,7 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
 export class createBootcampCareersTable1651386873565 implements MigrationInterface {
-    tableName = 'bootcamp_carrers'
+    tableName = 'bootcamp_careers'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         // create table
@@ -21,7 +21,7 @@ export class createBootcampCareersTable1651386873565 implements MigrationInterfa
                     isNullable: false,
                 },
                 {
-                    name: 'carrer',
+                    name: 'career',
                     type: 'enum',
                     enum: ['Web Development', 'Mobile Development', 'UI/UX', 'Data Science', 'Business', 'Other'],
                     isNullable: false

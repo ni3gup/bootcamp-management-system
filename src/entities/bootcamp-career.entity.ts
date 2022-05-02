@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm'
 
-@Entity({ name: 'bootcamp_carrers' })
+@Entity({ name: 'bootcamp_careers' })
 export class BootcampCareer {
     @PrimaryGeneratedColumn({ type: 'bigint' })
     id?: number

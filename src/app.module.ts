@@ -10,6 +10,8 @@ import { SeederModule } from './modules/seeder.module'
 import { AuthenticationMiddleware } from './middlewares/authentication.middleware'
 import { BootcampController } from './controllers/v1/bootcamp/bootcamp.controller'
 import { BootcampModule } from './modules/bootcamp.module'
+import { Bootcamp } from './entities/bootcamp.entity'
+import { BootcampCareer } from './entities/bootcamp-career.entity'
 
 @Module({
   imports: [
@@ -23,14 +25,14 @@ import { BootcampModule } from './modules/bootcamp.module'
       database: process.env.DB_NAME || 'bootcampmanagementsystem',
       username: process.env.DB_USERNAME || 'root',
       password: process.env.DB_PASSWORD || '',
-      entities: [Role, User],
+      entities: [Role, User, Bootcamp, BootcampCareer],
       synchronize: false
     }),
     AuthModule,
     SeederModule,
     BootcampModule
   ],
-  controllers: [AppController, BootcampController],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule implements NestModule {

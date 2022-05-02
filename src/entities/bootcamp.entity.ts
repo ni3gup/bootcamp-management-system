@@ -37,14 +37,12 @@ export class Bootcamp {
     address_type?: string
 
     @Column({
-        type: 'decimal',
-        length: '10,2',
+        type: 'decimal'
     })
     latitude?: number
 
     @Column({
-        type: 'decimal',
-        length: '10,2',
+        type: 'decimal'
     })
     longitude?: number
 
