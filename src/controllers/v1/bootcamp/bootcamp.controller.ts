@@ -1,4 +1,4 @@
-import { Body, Controller, HttpException, HttpStatus, Post, Req, Version } from '@nestjs/common'
+import { Body, Controller, Get, HttpException, HttpStatus, Param, Post, Query, Req, Version } from '@nestjs/common'
 import { Request } from 'express'
 import { User } from 'src/entities/user.entity'
 
@@ -12,16 +12,36 @@ export class BootcampController {
     ) { }
 
     @Version('1')
+    @Get('/')
+    async getBootcamps(
+        @Query('limit') limit: number = 10,
+        @Query('offset') offset: number = 0,
+    ) {
+        try {
+            return this.bootcampService.getBootcamps(limit, offset)
+        } catch (error) {
+            throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR)
+        }
+    }
+
+    @Version('1')
     @Post('/')
     async create(
         @Req() req: Request,
         @Body() requestBody: CreateBootcampValidator
     ) {
         try {
+            const role = (<User>req.user).role?.role
+
+            const allowedRoles = ['publisher', 'admin']
+            if (!allowedRoles.includes(role)) {
+                throw new HttpException(`User Role ${role} is unauthorized to access this route`, HttpStatus.FORBIDDEN)
+            }
+
             const user_id = (<User>req.user).id
 
-            const careers = requestBody.careers
-            delete requestBody.careers
+            const careers = requestBody.career
+            delete requestBody.career
 
             // Check for published bootcamp
             const publishedBootcamp = await this.bootcampService.getUserBootcamp(user_id)

@@ -12,12 +12,17 @@ export class Seeder {
 
     @Get('/import/roles')
     async importRoles() {
+        await this.seederService.removeRoles()
+
         const data: Role[] = [
             {
                 role: 'user',
             },
             {
                 role: 'publisher',
+            },
+            {
+                role: 'admin',
             }
         ]
 

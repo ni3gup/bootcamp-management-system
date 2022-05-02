@@ -8,7 +8,6 @@ import { AuthModule } from './modules/auth.module'
 import { AppController } from './app.controller'
 import { SeederModule } from './modules/seeder.module'
 import { AuthenticationMiddleware } from './middlewares/authentication.middleware'
-import { BootcampController } from './controllers/v1/bootcamp/bootcamp.controller'
 import { BootcampModule } from './modules/bootcamp.module'
 import { Bootcamp } from './entities/bootcamp.entity'
 import { BootcampCareer } from './entities/bootcamp-career.entity'
@@ -43,6 +42,7 @@ export class AppModule implements NestModule {
         { path: "/api/v1/auth/profile", method: RequestMethod.POST },
         { path: '/api/v1/auth/updateDetails', method: RequestMethod.PUT },
         { path: '/api/v1/auth/updatepassword', method: RequestMethod.PUT },
+        { path: '/api/v1/bootcamp', method: RequestMethod.GET },
         { path: '/api/v1/bootcamp', method: RequestMethod.POST },
       )
   }

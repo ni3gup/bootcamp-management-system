@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, ManyToOne, JoinColumn } from 'typeorm'
+import { Bootcamp } from './bootcamp.entity'
 
 @Entity({ name: 'bootcamp_careers' })
 export class BootcampCareer {
@@ -24,4 +25,8 @@ export class BootcampCareer {
 
     @DeleteDateColumn({ type: "timestamp", nullable: true })
     public deleted_at?: Date
+
+    @ManyToOne(() => Bootcamp, bootcamp => bootcamp.careers)
+    @JoinColumn({ name: 'bootcamp_id', referencedColumnName: 'id' })
+    bootcamp?: Bootcamp;
 }

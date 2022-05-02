@@ -14,4 +14,8 @@ export class SeederService {
     createRoles(roles: Role[]) {
         return this.roleRepository.save(roles)
     }
+
+    removeRoles() {
+        return this.roleRepository.clear()
+    }
 }

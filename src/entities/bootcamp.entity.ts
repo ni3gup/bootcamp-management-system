@@ -106,7 +106,7 @@ export class Bootcamp {
     @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
     user?: User
 
-    @OneToMany(() => BootcampCareer, bootcampCareer => bootcampCareer.bootcamp_id)
+    @OneToMany(() => BootcampCareer, bootcampCareer => bootcampCareer.bootcamp)
     @JoinColumn({ name: 'bootcamp_id', referencedColumnName: 'id' })
-    bootcamp_carrers?: BootcampCareer[]
+    careers?: BootcampCareer[]
 }

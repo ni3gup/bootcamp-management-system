@@ -21,7 +21,15 @@ export class BootcampService {
         return await this.bootcampRepository.findOne({ user_id })
     }
 
-    async createBootcamp(bootcamp: Partial<Bootcamp & BootcampCareer>, careers: ['Web Development', 'Mobile Development', 'UI/UX', 'Data Science', 'Business', 'Other']) {
+    async getBootcamps(limit = 10, offset = 0) {
+        return await this.bootcampRepository.find({
+            relations: ['careers'],
+            take: limit,
+            skip: limit * offset
+        })
+    }
+
+    async createBootcamp(bootcamp: Partial<Bootcamp & { other_career_name?: string }>, careers: ['Web Development', 'Mobile Development', 'UI/UX', 'Data Science', 'Business', 'Other']) {
         const slug = slugify(bootcamp.name, { lower: true })
 
         const location = await this.geocoderService.getLocation(bootcamp.address)

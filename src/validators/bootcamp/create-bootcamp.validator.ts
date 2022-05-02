@@ -27,7 +27,7 @@ export class CreateBootcampValidator {
 
     @IsNotEmpty()
     @IsArray()
-    careers: ['Web Development', 'Mobile Development', 'UI/UX', 'Data Science', 'Business', 'Other']
+    career: ['Web Development', 'Mobile Development', 'UI/UX', 'Data Science', 'Business', 'Other']
 
     @IsString()
     @IsOptional()

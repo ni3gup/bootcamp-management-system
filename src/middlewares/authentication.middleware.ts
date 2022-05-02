@@ -35,7 +35,8 @@ export class AuthenticationMiddleware implements NestMiddleware {
             const user = await getRepository(User).findOne({
                 where: {
                     id: decoded.id
-                }
+                },
+                relations: ['role']
             })
 
             if (!user) {
